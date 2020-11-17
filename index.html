@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HAPPY BIRTHDAY!</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			position: relative;
+			overflow: hidden;
+			margin: 0 auto;
+			width: 	100vw;
+			max-width: 375px;
+			height: 100vh;
+			max-height: 667px;
+
+		}
+		.flowers-bottom {
+			position: absolute;
+			width: 250px;
+			bottom: 0px;
+			left: 0px;
+			z-index: 100;
+		}
+
+		.flowers-top {
+			width: 375px;
+			position: absolute;
+			top: -70px;
+			left: 0px;
+			z-index: 100;
+		}
+
+		.birthday-text {
+			position: absolute;
+			display: block;
+			padding: 20px;
+			width: 300px;
+			height: 300px;
+			top: calc(50% - 150px);
+			left: calc(50% - 150px);
+			box-shadow: 0 0 15px 0 rgba(0, 0, 0, .3);
+		}
+
+		.birthday-text.gif {
+			background: url('img/tenor.gif');
+			background-size: cover;
+		}
+
+		.title {
+			display: block;
+			font-family: 'Caveat', cursive;
+			font-size: 24px;
+			text-align: center;
+			color: #e05297;
+		}
+
+		#text {
+			font-size: 20px;
+			font-family: 'Caveat', cursive;
+			color: #ea86b6;
+		}
+
+		.ballons {
+			position: absolute;
+			bottom: -100%;
+			left: calc(50% - 125px);
+			width: 250px;
+			animation: fly 3000ms linear 8s forwards;
+			z-index: 1000;
+		}
+
+		@keyframes fly {
+			from {
+				bottom: -100%;
+			}
+
+			to {
+				bottom: 200%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<img src="img/flowers.gif" alt="" class="flowers-top">
+	<img src="img/giphy.gif" alt="" class="flowers-bottom">
+	<img src="img/balloons.png" alt="" class="ballons">
+	<div class="birthday-text">
+		<span class="title">Вітаю з днем народженням <br> Інна Олександрівна!</span>
+		<p id="text">
+			
+		</p>
+	</div>
+
+	<script>
+		function writeTextByJS(id, speed) {
+			var text = `Крім міцного здоров'я і благополуччя в домі, бажаю завжди бути в гармонії з собою. Нехай задумане завжди збувається, а життя буде наповнене тільки яскравими і сонячними днями.`;
+		    var ele = document.getElementById(id),
+		      txt = text.split("");
+		  	var interval = setInterval(function(){
+
+		      if(!txt[0]){
+
+		            return clearInterval(interval);
+		     };
+
+		      ele.innerHTML += txt.shift();
+		   }, speed != undefined ? speed : 100);
+
+		   return false;
+		};
+
+		setTimeout(function() {
+			document.querySelector('.birthday-text').innerHTML = '';
+
+			document.querySelector('.birthday-text').classList.add('gif');
+		}, 11000)
+
+		writeTextByJS('text', 50);
+	</script>
+</body>
+</html>
